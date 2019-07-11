@@ -1,0 +1,161 @@
+﻿@model School.Student
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>-- DB --</title>
+    <script>
+        function handleIt() {
+            document.getElementsByName("change").innerHTML = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //var x = document.getElementsByName("sid");
+            //var y = document.getElementsByName("sfn");
+            //var z = document.getElementsByName("sln");
+            //var t = document.getElementsByName("sbd");
+            //document.getElementsByName("change").innerHTML = x + ", " + y + ", " + z + ", " + t;
+        }
+
+    </script>
+</head>
+<body>
+    @*<div class="row">
+            <div class="col-md-4">
+                <form action="script:handleIt()" method="post" id="studentform">
+                    <fieldset>
+                        <legend> Student information:</legend>
+                        Student ID: <br />
+                        <input type="text" name="sid" value="1" />
+                        <br />
+                        First name:<br>
+                        <input type="text" name="sfn" value="Mickey">
+                        <br>
+                        Last name:<br>
+                        <input type="text" name="sln" value="Mouse">
+                        <br />
+                        Birthday:<br>
+                        <input type="text" name="sbd" value="2000-01-01">
+                        <br><br>
+                        <input type="submit" value="Submit">
+                    </fieldset>
+                </form>
+            </div>
+        </div>*@
+
+
+    @using (Html.BeginForm("Index", "DB", FormMethod.Post))
+    {
+        <table id="studenttable" cellpadding="0" cellspacing="0">
+            <tr>
+                <th colspan="2" align="center">Student Details</th>
+            </tr>
+            <tr>
+                <td>Student Id: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.sid)
+                </td>
+            </tr>
+            <tr>
+                <td>First Name: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.sfn)
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.sln)
+                </td>
+            </tr>
+            <tr>
+                <td>Birthday: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.sbd)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    }
+    <p name="change"> Slm. </p>
+</body>
+</html>
+
+@*<script>
+        function func(x, y, z, t) {
+            document.getElementsByName("change").innerHTML = x + ", " + y + ", " + z + ", " + z;
+        }
+    </script>*@
+
+@*<script>//set the connection string
+                string connString = "Server =DESKTOP-DCA4TM0; Database = school; Trusted_Connection = True;";
+
+                //variables to store the query results
+                int cusID;
+                string cusName, cusLoc,cusMail;
+
+                try
+                {
+                    //sql connection object
+                    using (SqlConnection conn = new SqlConnection(connString))
+                    {
+                        //retrieve the SQL Server instance version
+                        string query = "Insert Into Students(StudentID,FirstName,lastName, BirthDay) Values( " + sid + ","+  e.Location, e.Email FROM dbo.Customers as e ";
+                        //define the SqlCommand object
+                        SqlCommand cmd = new SqlCommand(query, conn);
+
+                        //open connection
+                        conn.Open();
+
+                        //execute the SQLCommand
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        Console.WriteLine(Environment.NewLine + "Retrieving data from database..." + Environment.NewLine);
+                        Console.WriteLine("Retrieved records:");
+
+                        //check if there are records
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                cusID = dr.GetInt32(0);
+                                cusName = dr.GetString(1);
+                                cusLoc = dr.GetString(2);
+                                cusMail = dr.GetString(3);
+
+                                //display retrieved record
+                                Console.WriteLine("{0} -- {1} -- {2} -- {3}",cusID.ToString(), cusName,cusLoc,cusMail);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No data found.");
+                        }
+
+                        //close data reader
+                        dr.Close();
+
+                        //close connection
+                        conn.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //display error message
+                    Console.WriteLine("Exception: " + ex.Message);
+                }
+
+
+            }
+        }
+    }
+
+    </script>*@
+
+

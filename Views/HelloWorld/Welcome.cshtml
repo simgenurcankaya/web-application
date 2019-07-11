@@ -1,0 +1,26 @@
+﻿    <h2>Use the XMLHttpRequest to get the content of a file.</h2>
+    <p>The content is written in JSON format, and can easily be converted into a JavaScript object.</p>
+
+    <p id="demo">ŞŞŞŞ <br /></p>
+
+    <script>
+var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            var x = this.readyState;
+            var y = this.status;
+            var resultText = XMLHttpRequest.responseText;
+    document.getElementById("demo").innerHTML +="\n- Ready State : " +  x +" - Status " + y  + " - Result Text " +  resultText  + " <br/>";
+
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.name;
+    }
+    else {
+        
+        document.getElementById("demo").innerHTML += "Else \n";
+    }
+};
+        xmlhttp.send(JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }));
+    </script>
+
+    <p>Take a look at <a href="file:///C:\Users\Shopi\Desktop\json_demo.txt" target="file:///C:\Users\Shopi\Desktop\json_demo.txt">json_demo.txt</a></p>
